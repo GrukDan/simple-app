@@ -1,0 +1,60 @@
+<carousel>
+  <slide>
+    <img src="assets/img/1.jpg" alt="first slide" style="display: block; width: 100%;">
+    <div class="carousel-caption d-none d-md-block " style="top: 350px">
+      <div *ngIf="templateShow; then welcome"></div>
+    </div>
+  </slide>
+  <slide>
+    <img src="assets/img/2.jpg" alt="second slide" style="display: block; width: 100%;">
+    <div class="carousel-caption d-none d-md-block" style="top: 350px">
+      <div *ngIf="templateShow; then welcome"></div>
+    </div>
+  </slide>
+  <slide>
+    <img src="assets/img/3.jpg" alt="third slide" style="display: block; width: 100%;">
+    <div class="carousel-caption d-none d-md-block " style="top: 350px">
+      <div *ngIf="templateShow; then welcome"></div>
+    </div>
+  </slide>
+</carousel>
+
+
+<ng-template #welcome>
+  <div>
+    <h1>
+      <span style="-webkit-text-stroke: 1px black; font-weight: bolder">
+        WELCOME
+      </span>
+    </h1>
+    <button class="btn btn-primary btn-lg mt-3 h3" (click)="openModal(logIn)">LOG IN</button>
+  </div>
+</ng-template>
+
+
+<ng-template #logIn>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Log in</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <form>
+        <div class="form-group">
+          <label for="loginInput">Login</label>
+          <input type="text" id="loginInput" class="form-control" name="userLogin"[(ngModel)]="userForAuth.login"/>
+        </div>
+        <div class="form-group">
+          <label for="passwordInput">Password</label>
+          <input type="password" id="passwordInput" class="form-control" name="userPassword" [(ngModel)]="userForAuth.password"/>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-secondary" (click)="modalRef.hide()">Close</button>
+    <button class="btn btn-primary" (click)="authorization()">Log in</button>
+  </div>
+</ng-template>

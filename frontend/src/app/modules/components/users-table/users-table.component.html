@@ -1,0 +1,88 @@
+<tabset [justified]="true">
+  <tab>
+    <ng-template tabHeading>
+      <span class="h2">Get account</span>
+    </ng-template>
+    <div class="row" >
+      <div class="col">
+        <div class="container-fluid">
+          <div *ngIf="authAccount!=null;then showUserViewModel; else noUserVewModels">
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div *ngIf="editUserVar;then editUser"></div>
+      </div>
+    </div>
+  </tab>
+  <tab (click)="getAllUserViewModels()">
+    <ng-template tabHeading >
+      <h2 class="h2" (click)="getAllUserViewModels()" >Users table</h2>
+    </ng-template>
+    <ng4-loading-spinner [timeout]="3600000" [loadingText]=" 'Please wait...'"></ng4-loading-spinner>
+    <div class="container-fluid">
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">№</th>
+          <th scope="col">Name</th>
+          <th scope="col">Surname</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor=" let userViewModel of userViewModels;let i=index">
+          <td>{{i + 1}}</td>
+          <td>{{userViewModel.userName}}</td>
+          <td>{{userViewModel.userSurname}} </td>
+          <td>{{userViewModel.email}}</td>
+          <td>{{userViewModel.roleName}}</td>
+          <td><button class="btn btn-primary" [value]="userViewModel.iduser" (click)="deleteUser($event)">Delete</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </tab>
+</tabset>
+
+
+<ng-template #showUserViewModel>
+  <h3>
+    <span>Name: </span><span>{{authAccount.userName}}</span>
+  </h3>
+  <h3>
+    <span>Surname: </span><span>{{authAccount.userSurname}}</span>
+  </h3>
+  <h3>
+    <span>Email: </span><span>{{authAccount.email}}</span>
+  </h3>
+  <h3>
+    <span>Role: </span><span>{{authAccount.roleName}}</span>
+  </h3>
+  <button class="btn btn-primary btn-lg" (click)="editUserVar=!editUserVar">Edit</button>
+</ng-template>
+
+<ng-template #noUserVewModels>
+  <h2>No authorized account</h2>
+</ng-template>
+
+<ng-template #editUser>
+  <form>
+    <div class="form-group">
+      <label for="exampleInputName">Name</label>
+      <input type="text" class="form-control" id="exampleInputName" placeholder="Input your name"  name="userNameChange" [(ngModel)]="authAccount.userName">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputSurname">Surname</label>
+      <input type="text" class="form-control" id="exampleInputSurname" placeholder="Input your surname" name="userSurnameChange" [(ngModel)]="authAccount.userSurname">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="userEmailChange" [(ngModel)]="authAccount.email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="saveChangedUser()">Save</button>
+  </form>
+</ng-template>

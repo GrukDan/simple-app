@@ -1,0 +1,24 @@
+<UserViewModel>
+  <id>11</id>
+  <role>3</role>
+  <role>Developer</role>
+  <user-name>Артем</user-name>
+  <user-surname>Виталюр</user-surname>
+  <email>vital@mail.com</email>
+</UserViewModel>
+<UserViewModel>
+  <id>12</id>
+  <role>4</role>
+  <role>Tester</role>
+  <user-name>Мария</user-name>
+  <user-surname>Коршун</user-surname>
+  <email>korsh@mail.com</email>
+</UserViewModel>
+<UserViewModel>
+  <id>13</id>
+  <role>3</role>
+  <role>Developer</role>
+  <user-name>Андрея </user-name>
+  <user-surname>Яховский</user-surname>
+  <email>yaha@mail.com</email>
+</UserViewModel>
